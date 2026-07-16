@@ -509,6 +509,25 @@
 <div class="sticky-cta">
   <a href="https://pay.hotmart.com/X106741714O?checkoutMode=10&offDiscount=DESCUENTOEXCLUSIVOHOY&bid=1784074913075" class="cta">QUIERO MI 50% OFF →</a>
 </div>
-
+<script>
+(function(){
+  var T='hotmart-sibo-alimentar',U='https://track.destaquenaweb.com.br/capturar.php';
+  function ck(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]+)');return m?m[2]:''}
+  function qs(n){return new URLSearchParams(location.search).get(n)||''}
+  window.trackEvento=function(ev,d){d=d||{};
+    var p={tenant:T,evento:ev,url:location.href,
+      consentimento:d.consentimento!==undefined?d.consentimento:1,
+      nome:d.nome||'',email:d.email||'',telefone:d.telefone||'',
+      valor:d.valor||'',event_id:d.event_id||'',
+      utm_source:qs('utm_source'),utm_campaign:qs('utm_campaign'),
+      fbclid:qs('fbclid'),gclid:qs('gclid'),gbraid:qs('gbraid'),wbraid:qs('wbraid'),
+      fbp:ck('_fbp'),fbc:ck('_fbc')};
+    navigator.sendBeacon?navigator.sendBeacon(U,new Blob([JSON.stringify(p)],{type:'application/json'}))
+      :fetch(U,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p),keepalive:true});
+  };
+  trackEvento('PageView');
+})();
+</script>
+  
 </body>
 </html>
